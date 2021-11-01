@@ -1,0 +1,32 @@
+ <!-- filters -->
+ <section class="filters">
+  <!-- search box -->
+  <div class="search-box">
+    <ng-autocomplete #auto
+     [data]="data"
+     [searchKeyword]="keyword"
+     [itemTemplate]="itemTemplate"
+     [notFoundTemplate]="notFoundTemplate">
+     <input class="search-box__input" placeholder="Search..." type="text" name="txt_search" id="" [autocomplete]="true"></ng-autocomplete>
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+    </ng-template>
+    <ng-template #notFoundTemplate let-item>
+    </ng-template>
+
+      <button type="submit" class="search-box__btn">
+          <i class="fas fa-search"></i>
+      </button>
+  </div>
+  <!-- filter list -->
+  <app-filters></app-filters>
+  <!-- related items -->
+  <div>
+      <!-- title -->
+      <h5></h5>
+      <!-- small item -->
+      <div></div>
+      <div></div>
+      <div></div>
+  </div>
+</section>
