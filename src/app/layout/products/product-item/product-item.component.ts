@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
     // this.product={
     //   name:"Camera",
     //   price:100,
-    //   imgUrl:"../../assets/img/laptop.jpg",
+    //   imagesUrls:"../../assets/img/laptop.jpg",
     //   discount:30
     // }
     // productService.deleteProduct(this.product.id);

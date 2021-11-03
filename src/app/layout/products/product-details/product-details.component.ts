@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private productService:productService, private activatedRout:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.activatedRout.snapshot.data.pageName)
     const id=+this.activatedRout.params.subscribe(
       (res)=>{
         console.log(res.id);

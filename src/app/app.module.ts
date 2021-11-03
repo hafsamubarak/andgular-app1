@@ -13,35 +13,47 @@ import { DropDownComponent } from './shared/drop-down/drop-down.component';
 import { productService } from './_services/productService.service';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { AddProductComponent } from './layout/products/add-product/add-product.component';
-import { PaymentTypesComponent } from './shared/payment-types/payment-types.component';
+import { PaymentTypeComponent } from './shared/payment-types/payment-types.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ProductDetailsComponent } from './layout/products/product-details/product-details.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './core/home/home.component';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { MyInterseptorService } from './_services/my-interseptor.service';
+
+// import { ProductModule } from './layout/products/product.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopHeaderComponent,
     FooterComponent,
-    ProductListingComponent,
-    CategoriesListningComponent,
-    ProductItemComponent,
-    FiltersComponent,
-    FilterItemComponent,
+    // ProductListingComponent,
+    // CategoriesListningComponent,
+    // ProductItemComponent,
+    // FiltersComponent,
+    // FilterItemComponent,
     DropDownComponent,
-    AddProductComponent,
-    PaymentTypesComponent,
+    // AddProductComponent,
+    PaymentTypeComponent,
     NotFoundComponent,
-    ProductDetailsComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    // ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AutocompleteLibModule,
-    FormsModule
+    FormsModule,
+    // ProductModule,
+    AppRoutingModule,
+    HttpClientModule,
 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:MyInterseptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

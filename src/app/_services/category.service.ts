@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Category } from '../_models/category.model';
 
 @Injectable({
@@ -6,31 +8,32 @@ import { Category } from '../_models/category.model';
 })
 export class CategoryService {
   // category:Category[];
-  category:Category[]=[
-    {id:1,name:"Arts & Crafts"},
-    {id:2,name:"Automotive"},
-    {id:3,name:"Baby"},
-    {id:4,name:"Books"},
-    {id:5,name:"Eletronics"},
-    {id:6,name:"Women's Fashion"},
-    {id:7,name:"Men's Fashion"},
-    {id:8,name:"Health & Household"},
-    {id:9,name:"Home & Kitchen"},
-    {id:10,name:"Military Accessories"},
-    {id:11,name:"Movies & Television"},
-    {id:12,name:"Sports & Outdoors"},
-    {id:13,name:"Tools & Home Improvement"},
-    {id:14,name:"Toys & Games"}
-  ]
-  constructor() {
+  // category:Category[]=[
+  //   {id:1,name:"Arts & Crafts"},
+  //   {id:2,name:"Automotive"},
+  //   {id:3,name:"Baby"},
+  //   {id:4,name:"Books"},
+  //   {id:5,name:"Eletronics"},
+  //   {id:6,name:"Women's Fashion"},
+  //   {id:7,name:"Men's Fashion"},
+  //   {id:8,name:"Health & Household"},
+  //   {id:9,name:"Home & Kitchen"},
+  //   {id:10,name:"Military Accessories"},
+  //   {id:11,name:"Movies & Television"},
+  //   {id:12,name:"Sports & Outdoors"},
+  //   {id:13,name:"Tools & Home Improvement"},
+  //   {id:14,name:"Toys & Games"}
+  // ]
+  url=environment.baseUrl;
+  constructor(private http:HttpClient) {
 
   }
-  getAllCategories():Category[]{
-    return [...this.category]
+  getAllCategories(){
+    return this.http.get(`${this.url}category`);
   }
-  getCategoryById(id:number):Category | undefined{
-    return this.category.find((c)=>c.id===id);
-  }
+  // getCategoryById(id:number):Category | undefined{
+  //   return this.category.find((c)=>c._id===id);
+  // }
   save(){}
   update(){}
   delete(){}

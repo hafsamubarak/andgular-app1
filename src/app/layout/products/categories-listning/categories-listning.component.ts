@@ -21,7 +21,11 @@ export class CategoriesListningComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.data=this.productService.getAllProducts();
+    this.productService.getAllProducts().subscribe(
+      (res)=>{
+        this.data=res.product;
+      }
+    );
   }
 
 }

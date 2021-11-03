@@ -30,51 +30,55 @@ export class AddProductComponent implements OnInit {
              ) {
 
         this.product={
-       basicData:[{}],
+       data:[{}],
        paymentType:[{}],
        tags:[],
-       imgUrl:[]
+       imagesUrls:[]
 
     }
    }
 
   ngOnInit(): void {
-    this.category=this.categoryService.getAllCategories();
-    this.paymentTypeMethods=this.paymentTypeService.getAllPaymentTypes();
-    const productID=this.activatedRoute.snapshot.params.productId;
-    console.log(productID);
-    const product=this.productService.getProductById(+productID);
-    console.log(product);
-    if(product){
-      this.product={...product};
-      this.isEditMode=true;
+    this.categoryService.getAllCategories().subscribe(
+      (res)=>{
+        console.log(res);
+        this.category=res as Category[];
+      }
+    )
+    this.paymentTypeMethods=this.paymentTypeService.getAllpaymentTypes();
+    const productId=this.activatedRoute.snapshot.params.productId;
+    // console.log(productId);
+    if(productId){
+      const product=this.productService.getProductById(+productId);
+      // this.product={...product};
+      // this.isEditMode=true;
     }
   }
   onSubmit(form:NgForm,txtInput:NgModel){
     // this.product={
     //    id:1,
-    //    basicData:[{id:1,name:"",desription:"",language:{id:1,name:"English"}}],
+    //    data:[{id:1,name:"",desription:"",language:{id:1,name:"English"}}],
     //    categories:{id:1,name:"Electronics"},
     //    paymentType:[{id:1,name:"Visa"}],
     //    price:100,
     //    discount:30,
-    //    imgUrl:["../../assets/img/laptop.jpg"]
+    //    imagesUrls:["../../assets/img/laptop.jpg"]
 
     // }
   //  this.product={...form.value};
-    const cat=this.categoryService.getCategoryById(+form.value.category);
+    // const cat=this.categoryService.getCategoryById(+form.value.category);
     // const newProduct=<Product>();
-    // this.product={basicData:[{name:form.value.nameInputField,desription:form.value.descriptionInputField,language:{id:1,name:"English"}}],
+    // this.product={data:[{name:form.value.nameInputField,desription:form.value.descriptionInputField,language:{id:1,name:"English"}}],
     // categories:{name:""},
     // paymentType:[{id:1,name:"Visa"}],
     // price:100,
     // discount:30,
-    // imgUrl:["../../assets/img/laptop.jpg"]};
-    // this.product.basicData[0].name=form.value.nameInputField;
-    // this.product.basicData[0].desription=form.value.descriptionInputField;
-    if(cat){
-      this.product.categories=cat;
-    }
+    // imagesUrls:["../../assets/img/laptop.jpg"]};
+    // this.product.data[0].name=form.value.nameInputField;
+    // this.product.data[0].desription=form.value.descriptionInputField;
+    // if(cat){
+    //   this.product.categories=cat;
+    // }
     this.product.paymentType=[];
     for (let index = 0; index < this.paymentTypeMethods.length; index++) {
       if(form.value['check_'+index]){
@@ -85,7 +89,9 @@ export class AddProductComponent implements OnInit {
     if(this.isEditMode){
       this.productService.updateProduct(this.product);
     }else{
-      this.productService.addProduct(this.product);
+      this.productService.addProduct(this.product).subscribe(
+        (res)=>{console.log(res)}
+      );
     }
     this.productService.addProduct(this.product);
     //route to product-list
@@ -100,7 +106,7 @@ export class AddProductComponent implements OnInit {
 
   // }
   // onInputChanged(name:string){
-  //   this.product.basicData[0].name=name;
+  //   this.product.data[0].name=name;
   // }
 
   onTagAdded(tagInput:HTMLInputElement){

@@ -1,0 +1,30 @@
+ <!-- Register -->
+ <div class="container">
+  <form class="login" #registerForm="ngForm">
+      <h4 class="login__header">
+          Register An Account
+      </h4>
+      <div class="form-group">
+          <label for="">E-mail Address</label>
+          <input ngModel class="form-control" name="email" type="email" id="">
+      </div>
+      <div class="form-row">
+          <div class="form-group">
+              <label for="">Password</label>
+              <input ngModel class="form-control"  name="paswword" type="password" id="">
+          </div>
+          <div class="form-group">
+              <label for="">Re-enter Password</label>
+              <input ngModel class="form-control" name="repeatedPasswprd" id="" type="password">
+          </div>
+      </div>
+
+      <div class="login__remember-me">
+          <div class="add-product__actions">
+              <button href="#" class="btn btn--gray" (click)="onRegister(registerForm.value)">Cancel</button>
+              <button href="#" class="btn btn--primary">Register</button>
+          </div>
+      </div>
+      <a href="#" class="login__register-now">You are alredy a member?</a>
+  </form>
+</div>

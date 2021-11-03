@@ -5,7 +5,7 @@ import { PaymentType } from 'src/app/_models/payment-type.model';
   templateUrl: './payment-types.component.html',
   styleUrls: ['./payment-types.component.scss']
 })
-export class PaymentTypesComponent implements OnInit {
+export class PaymentTypeComponent implements OnInit {
   paymentTypeMethods:PaymentType[];
   constructor() {
     this.paymentTypeMethods=[

@@ -1,16 +1,16 @@
-import { BasicData } from "./basicData.model";
-import { PaymentType } from "./payment-type.model";
+import { data } from "./data.model";
+import { PaymentType} from "./payment-type.model";
 import { Category } from "./category.model";
 import { Tag } from "./tag.model";
 
 export interface Product {
   id?: number,
-  basicData: BasicData[],
+  data: data[],
   paymentType: PaymentType[],
   price?: number,
-  categories?: Category,
+  categoryId?: number,
   discount?: number,
   tags?: Tag[],
-  imgUrl: string[],
+  imagesUrls: string[],
   relatedProductsIds?:number[]
 }

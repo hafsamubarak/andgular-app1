@@ -5,6 +5,9 @@ import { PaymentType } from '../_models/payment-type.model';
   providedIn: 'root'
 })
 export class PaymentTypeService {
+  getAllPaymentTypes(): PaymentType[] {
+    throw new Error('Method not implemented.');
+  }
   paymentTypeMethods:PaymentType[]=[
     {id:1,name:"Direct Bank Transfare"},
     {id:2,name:"Cheque Payment"},
@@ -15,10 +18,10 @@ export class PaymentTypeService {
   ]
 
   constructor() { }
-  getAllPaymentTypes():PaymentType[]{
+  getAllpaymentTypes():PaymentType[]{
     return [...this.paymentTypeMethods];
   }
-  getPaymentTypeById(id:number):PaymentType | undefined{
+  getpaymentTypeMethodsById(id:number):PaymentType | undefined{
     return this.paymentTypeMethods.find((p)=>p.id===id);
   }
   save(){}

@@ -24,14 +24,19 @@ currentPage:number=0
   }
 
   ngOnInit(): void {
-    this.productListArray=this.productService.getAllProducts();
-    this.sliceArray();
+    this.productService.getAllProducts().subscribe(
+      (res)=>{
+        console.log(res);
+        this.productListArray=res.product;
+        this.sliceArray();
+        this.calculatePageNumber();
+      }
+    );
+    // this.sliceArray();
     // this.calculatePageNumber();
      this.productService.productChanged.subscribe(
       (res)=>{
         this.productListArray=res;
-        this.sliceArray();
-        this.calculatePageNumber();
       });
 
     this.productService.itemDeleted.subscribe(

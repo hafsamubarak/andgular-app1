@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PaymentTypeService } from './payment-type.service';
+import { AuthGuardService } from './auth-guard.service';
 
-describe('paymentTypeMethodsService', () => {
-  let service: PaymentTypeService;
+describe('AuthGuardService', () => {
+  let service: AuthGuardService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PaymentTypeService);
+    service = TestBed.inject(AuthGuardService);
   });
 
   it('should be created', () => {
